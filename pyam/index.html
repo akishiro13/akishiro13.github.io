@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PYAM Executive Hangar Monitor | Pyro System</title>
+    <meta name="description" content="Surveillez en temps réel l'ouverture des hangars exécutifs dans le système Pyro. Cartes des installations et vaisseaux de récompense.">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-effects">
+       <div class="glow-orb orange"></div>
+       <div class="glow-orb red"></div>
+    </div>
+    
+    <nav class="navbar">
+        <div class="logo">PYAM <span>SYSTEMS</span></div>
+        <ul class="nav-links">
+            <li><a href="#monitor">Moniteur</a></li>
+            <li><a href="#tutorial">Tutoriel</a></li>
+            <li><a href="#maps">Installations</a></li>
+            <li><a href="#rewards">Récompenses</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content text-center">
+            <h1>PYAM EXECUTIVE <span>HANGAR STATUS</span></h1>
+            <p>Accès Exécutif - Système Pyro | Protocole de synchronisation en temps réel</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Timer Section -->
+        <section id="monitor" class="section">
+            <h2 class="section-title">ÉTAT DU HANGAR EXÉCUTIF</h2>
+            <div class="timers-grid" style="grid-template-columns: 1fr; max-width: 600px; margin: 0 auto;">
+                <div class="timer-card">
+                    <div class="timer-header">ACCÈS SYNCHRONISÉ PYRO</div>
+                    <div class="countdown" id="main-timer">00:00:00</div>
+                    <div class="status online" id="main-status">VÉROUILLÉ</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Maps Section -->
+        <section id="maps" class="section">
+            <h2 class="section-title">PLANS DES INSTALLATIONS</h2>
+            <div class="gallery-grid">
+                <div class="gallery-card">
+                    <img src="pyam map/PYAM-EXHANG.jpg" alt="PYAM Executive Hangar">
+                    <div class="card-overlay">
+                        <h3>Hangar Exécutif PYAM</h3>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <img src="pyam map/PYAM-SUPVISR.jpg" alt="Supervisor Office">
+                    <div class="card-overlay">
+                        <h3>Bureau du Superviseur</h3>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <img src="pyam map/CHECKMATE.jpg" alt="Checkmate Station">
+                    <div class="card-overlay">
+                        <h3>Station Checkmate</h3>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <img src="pyam map/ORBITUARY.jpg" alt="Orbituary Station">
+                    <div class="card-overlay">
+                        <h3>Station Orbituary</h3>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <img src="pyam map/RUIN-STATION.jpg" alt="Ruin Station">
+                    <div class="card-overlay">
+                        <h3>Ruin Station</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rewards Section -->
+        <section id="rewards" class="section">
+            <h2 class="section-title">VAISSEAUX DE RÉCOMPENSE EXÉCUTIFS</h2>
+            <div class="gallery-grid">
+                <div class="gallery-card">
+                    <img src="recompence pyam/AnvilF7AHornetMkIIExecutive.jpg" alt="Anvil F7A Hornet MkII Executive">
+                    <div class="card-overlay">
+                        <h3>F7A Hornet MkII Exec</h3>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <img src="recompence pyam/AnvilF8CLightningExecutive.jpg" alt="Anvil F8C Lightning Executive">
+                    <div class="card-overlay">
+                        <h3>F8C Lightning Exec</h3>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <img src="recompence pyam/DrakeCorsairExecutive.jpg" alt="Drake Corsair Executive">
+                    <div class="card-overlay">
+                        <h3>Corsair Exec</h3>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <img src="recompence pyam/DrakeCutlassBlackExecutive.jpg" alt="Drake Cutlass Black Executive">
+                    <div class="card-overlay">
+                        <h3>Cutlass Black Exec</h3>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <img src="recompence pyam/GatacSyulenExecutive.jpg" alt="Gatac Syulen Executive">
+                    <div class="card-overlay">
+                        <h3>Syulen Exec</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tutorial Section -->
+        <section id="tutorial" class="section">
+            <h2 class="section-title">GUIDE DES HANGARS EXÉCUTIFS</h2>
+            <p class="tuto-source">Source : <a href="https://starcitizen.tools/Guide:Executive_Hangars" target="_blank">Star Citizen Wiki</a></p>
+
+            <!-- Introduction -->
+            <div class="tuto-block">
+                <h3 class="tuto-heading">Introduction</h3>
+                <p>Pour accéder à un hangar exécutif, <strong>sept compboards uniques</strong> sont nécessaires. Ils se trouvent dans les différentes zones contestées du système Pyro.</p>
+                <p>Compléter un hangar exécutif vous accorde la propriété en jeu d'un des vaisseaux disponibles (variante militaire ou furtive) :</p>
+                <ul class="tuto-list">
+                    <li>Anvil F7A Hornet Mk II Executive</li>
+                    <li>Anvil F8C Lightning Executive</li>
+                    <li>Drake Corsair Executive</li>
+                    <li>Drake Cutlass Black Executive</li>
+                    <li>Gatac Syulen Executive</li>
+                    <li>Mirai Guardian MX Wikelo War Special</li>
+                    <li>RSI Meteor Executive</li>
+                    <li>RSI Scorpius Wikelo War Special</li>
+                </ul>
+                <p>Des <strong>armes FPS rares</strong> (lance-grenades, railguns) et des <strong>composants de vaisseau Grade-A</strong> peuvent également être trouvés dans le hangar.</p>
+            </div>
+
+            <!-- Portes de sécurité -->
+            <div class="tuto-block">
+                <h3 class="tuto-heading">1. Portes de Sécurité</h3>
+
+                <div class="tuto-sub">
+                    <h4>1.1 Portes à Fusibles (Fuse Doors)</h4>
+                    <p>Le type de porte verrouillée le plus courant. Présentes dans toutes les zones contestées sauf les hangars exécutifs.</p>
+                    <p>Pour ouvrir cette porte, insérez un <strong>fusible</strong> dans le réceptacle (en bas à gauche de la porte). Les fusibles se trouvent dans des boîtes rouges avec des étincelles sur les murs à proximité et réapparaissent en quelques minutes. Ils peuvent aussi être fabriqués sur les vaisseaux de récupération (Vulture, Fortune, Reclaimer) ou achetés dans certains avant-postes.</p>
+                    <p><strong>Comment insérer :</strong> Maintenez F en regardant le fusible → Sélectionnez "Carry" → Approchez-vous du réceptacle → L'UI "Insert Fuse" apparaît.</p>
+                    <p><strong>Si l'UI est absente :</strong> Utilisez un tracteur :</p>
+                    <ul class="tuto-list">
+                        <li>Posez le fusible au sol, attrapez-le au tracteur</li>
+                        <li>Approchez-le du réceptacle (contour jaune)</li>
+                        <li>Maintenez R + souris pour orienter le fusible</li>
+                        <li>Flèche vers le bas, dos vers la porte → contour vert = clic gauche</li>
+                    </ul>
+                    <p>La porte reste ouverte 30 à 60 secondes. Vous pouvez la fermer manuellement via le panneau à gauche, ou retirer le fusible pour la refermer.</p>
+                </div>
+
+                <div class="tuto-sub">
+                    <h4>1.2 Portes à Keycards</h4>
+                    <p>Présentes dans les trois zones contestées principales (Checkmate, Ruin, Orbituary). Elles protègent l'accès au loot précieux : Boards 1-7, composants Grade B, armes de vaisseau.</p>
+                    <p>Insérez la keycard correspondante dans le slot sous le panneau de contrôle. Il existe <strong>5 paires porte/clé</strong> dans Pyro :</p>
+                    <ul class="tuto-list">
+                        <li><span class="key-red">Supervisor (Rouge)</span></li>
+                        <li><span class="key-blue">Security (Bleu)</span></li>
+                        <li><span class="key-gold">Crypt (Or / Vert)</span></li>
+                        <li><span class="key-gold">Last Resort (Or / Jaune)</span></li>
+                        <li><span class="key-gold">Wasteland (Or / Bleu)</span></li>
+                    </ul>
+                </div>
+
+                <div class="tuto-sub">
+                    <h4>1.2.1 Keycards Rouges (Supervisor)</h4>
+                    <p>Imprimables dans deux bases astéroïdes en orbite solaire partagée avec Bloom :</p>
+                    <ul class="tuto-list">
+                        <li>PYR3 L4 → <strong>PYAM-SUPVISR-3-4</strong></li>
+                        <li>PYR3 L5 → <strong>PYAM-SUPVISR-3-5</strong></li>
+                    </ul>
+                    <p>Ces emplacements n'apparaissent pas dans la recherche de la Starmap, mais sont visibles en zoomant manuellement. Les imprimantes sont dans une pièce fermée accessible en grimpant sur des caisses et en passant par un passage au plafond.</p>
+                    <p><strong>Cooldown : 30 minutes</strong></p>
+                </div>
+
+                <div class="tuto-sub">
+                    <h4>1.2.2 Keycards Bleues (Security)</h4>
+                    <p>Plus communes, trouvables dans 2 des 3 zones contestées principales :</p>
+                    <ul class="tuto-list">
+                        <li><strong>Checkmate</strong> — 4 imprimantes. Source la plus accessible, seulement deux portes à fusibles pour les atteindre.</li>
+                        <li><strong>Orbituary</strong> — 2 imprimantes. Plus difficile d'accès, derrière une porte rouge Supervisor.</li>
+                    </ul>
+                    <p><strong>Cooldown : 30 minutes</strong></p>
+                </div>
+
+                <div class="tuto-sub">
+                    <h4>1.2.3 Keycards Crypt, Wasteland, Last Resort</h4>
+                    <p>Trouvables à Ruin Station, dans la "Ghost Arena". Chaque clé est derrière sa propre porte à fusible (1 fusible par clé).</p>
+                    <p><strong>Cooldown : 30 minutes</strong></p>
+                    <p>Dans le coffre-fort (Vault), ces trois clés déverrouillent trois portes séparées :</p>
+                    <ul class="tuto-list">
+                        <li><strong>Crypt</strong> — Board 5 + composants Grade B</li>
+                        <li><strong>Wasteland</strong> — Loot varié</li>
+                        <li><strong>Last Resort</strong> — Loot varié</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Timer Doors -->
+            <div class="tuto-block">
+                <h3 class="tuto-heading">2. Portes à Minuterie (Timer Doors)</h3>
+                <p>Une porte qui s'ouvre et se ferme automatiquement selon un cycle. Actuellement, une seule existe dans le jeu : à <strong>Ruin Station</strong>.</p>
+                <p>Les 4 phases (visibles sur un panneau au-dessus de la porte) :</p>
+                <div class="phase-grid">
+                    <div class="phase-card"><span class="phase-dot closed"></span><strong>Closed</strong> — La porte est fermée</div>
+                    <div class="phase-card"><span class="phase-dot opening"></span><strong>Opening</strong> — Préparation à l'ouverture</div>
+                    <div class="phase-card"><span class="phase-dot open"></span><strong>Open</strong> — La porte est ouverte</div>
+                    <div class="phase-card"><span class="phase-dot closing"></span><strong>Closing</strong> — Préparation à la fermeture</div>
+                </div>
+                <p>Cycle de Ruin Station : <strong>ouverte 1 minute</strong>, puis <strong>fermée 20 minutes</strong>.</p>
+                <p>30 secondes avant l'ouverture, des lumières bleues s'allument dans la Ghost Arena. Pendant l'ouverture, elles deviennent blanches brillantes. Cette porte ne peut <strong>pas</strong> être ouverte ou fermée manuellement.</p>
+            </div>
+
+            <!-- Zones Contestées -->
+            <div class="tuto-block">
+                <h3 class="tuto-heading">3. Zones Contestées</h3>
+
+                <div class="tuto-sub">
+                    <h4>Checkmate</h4>
+                    <ul class="tuto-list">
+                        <li><strong>Board 1</strong> — derrière une porte à fusible + porte rouge</li>
+                        <li><strong>Boards 2 et 3</strong> — dans le hangar de la zone contestée, accessible par deux chemins :
+                            <ul class="tuto-list">
+                                <li>Porte fusible → porte rouge → porte bleue</li>
+                                <li>2 portes fusible → 2 portes bleues</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tuto-sub">
+                    <h4>Orbituary</h4>
+                    <ul class="tuto-list">
+                        <li><strong>Board 4</strong> — porte fusible → porte rouge → seconde porte fusible</li>
+                        <li><strong>Board 7</strong> — porte fusible → porte rouge → porte fusible → 2 portes bleues</li>
+                    </ul>
+                </div>
+
+                <div class="tuto-sub">
+                    <h4>Ruin Station</h4>
+                    <p><strong>Ghost Arena</strong> — Nexus et entrée principale menant à The Crypt, Wasteland, Last Resort et The Vault.</p>
+                    <ul class="tuto-list">
+                        <li><strong>The Crypt</strong> — Accès à la Crypt Keycard → Board 5 dans le Vault</li>
+                        <li><strong>Wasteland</strong> — Accès à la Wasteland Keycard</li>
+                        <li><strong>Last Resort</strong> — Accès à la Last Resort Keycard</li>
+                        <li><strong>The Vault</strong> — Porte à minuterie (ouvre toutes les 20 min, fermée après 1 min)
+                            <ul class="tuto-list">
+                                <li>Board 6 — au-dessus du sol d'entrée, deuxième salle</li>
+                                <li>Board 5 — derrière une porte supplémentaire (keycard Crypt)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PYAM-EXHANG -->
+            <div class="tuto-block">
+                <h3 class="tuto-heading">4. PYAM-EXHANG-0-1 (Hangars Exécutifs)</h3>
+                <p>Ce cluster de trois bases astéroïdes se trouve près du soleil. <strong>Une seule base est active à la fois.</strong> Chaque base a le même layout. L'entrée est identique aux stations PYAM-SUPVISR. La porte du hangar exécutif est cachée de l'autre côté de l'astéroïde, sur le même plan que l'entrée.</p>
+
+                <div class="tuto-sub">
+                    <h4>4.1 Status Lights (Indicateurs lumineux)</h4>
+                    <p>Dans la zone EVA, il y a <strong>5 lumières</strong>. Si au moins une lumière est verte et qu'aucune n'est rouge, le hangar est accessible.</p>
+                    <div class="lights-info">
+                        <div class="light-phase">
+                            <span class="light-dot red-light"></span>
+                            <div>
+                                <strong>Phase Rouge (2 heures)</strong>
+                                <p>Une lumière rouge devient verte toutes les 24 minutes.</p>
+                            </div>
+                        </div>
+                        <div class="light-phase">
+                            <span class="light-dot green-light"></span>
+                            <div>
+                                <strong>Phase Verte (1 heure)</strong>
+                                <p>Les lumières vertes s'éteignent une par une, toutes les 12 minutes.</p>
+                            </div>
+                        </div>
+                        <div class="light-phase">
+                            <span class="light-dot off-light"></span>
+                            <div>
+                                <strong>Phase Noire (5 minutes)</strong>
+                                <p>Blackout avant le redémarrage complet du cycle en rouge.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Les compboards ne fonctionnent <strong>que lorsque des lumières vertes sont actives et qu'aucune rouge n'est présente</strong>.</p>
+                </div>
+
+                <div class="tuto-sub">
+                    <h4>4.2 Accès au Hangar</h4>
+                    <p>Insérez les <strong>7 compboards</strong> dans les 7 emplacements le long des tuyaux près des lumières. Une fois dans la zone du hangar, le vaisseau de récompense peut être réclamé par <strong>un seul joueur</strong>.</p>
+                    <p>Après avoir réclamé le vaisseau au terminal ASOP, la porte du hangar s'ouvre pour <strong>10 minutes</strong>, puis se ferme définitivement.</p>
+                    <p class="tuto-tip">💡 <strong>Conseil :</strong> Amenez un vaisseau cargo ! De nombreux composants et armes apparaissent dans le hangar, et le vaisseau de récompense n'a pas toujours assez de place cargo pour tout transporter.</p>
+                    <p class="tuto-warning">⚠️ <strong>Attention :</strong> Quand les portes se ferment, tout joueur ou vaisseau à l'intérieur du hangar ou de l'Engineering sera <strong>détruit</strong>.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2954 PYAM Executive Syndicate. Fansite non-officiel Star Citizen.</p>
+    </footer>
+
+    <!-- Modal pour agrandir les images -->
+    <div id="image-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-nav prev" id="modal-prev">&#10094;</div>
+        <div class="modal-nav next" id="modal-next">&#10095;</div>
+        <div class="modal-image-wrapper">
+            <img class="modal-content" id="modal-img" alt="Image agrandie">
+        </div>
+        <div id="modal-caption"></div>
+        <div class="zoom-hint" id="zoom-hint">🔍 Double-clic pour zoomer · Molette pour zoomer</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
