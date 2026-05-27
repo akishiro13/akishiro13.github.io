@@ -2,97 +2,399 @@
 <html lang="fr">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SC Ultra Guide — Le Hub Ultime Star Citizen</title>
-  <meta name="description"
-    content="SC Ultra Guide centralise tous les sites, outils et ressources validés pour Star Citizen. Votre point d'entrée unique vers le verse.">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            background:
+                radial-gradient(circle at top left, rgba(140, 0, 255, 0.25), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(0, 200, 255, 0.2), transparent 30%),
+                #050505;
+        }
+
+        .hero {
+            max-width: 1000px;
+        }
+
+        .hero h1 {
+            font-size: 90px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .hero span {
+            background: linear-gradient(90deg, #00d4ff, #9b5cff, #ff4fd8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 20px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .buttons a {
+            padding: 15px 30px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: white;
+            color: black;
+        }
+
+        .secondary {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .buttons a:hover {
+            transform: translateY(-4px);
+        }
+
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            margin-bottom: 60px;
+        }
+
+        .section-title p {
+            color: #9b5cff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 50px;
+            font-weight: 900;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: #9b5cff;
+        }
+
+        .project-image {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(155, 92, 255, 0.35), rgba(0, 212, 255, 0.2));
+            font-size: 70px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-content h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .category {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(155, 92, 255, 0.15);
+            border: 1px solid rgba(155, 92, 255, 0.2);
+            color: #caa7ff;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .project-content p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .techs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .techs span {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+
+        .project-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            background: white;
+            color: black;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .project-btn:hover {
+            transform: scale(1.03);
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .skill {
+            padding: 30px;
+            text-align: center;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        @media(max-width: 768px) {
+            .hero h1 {
+                font-size: 55px;
+            }
+
+            .section-title h2 {
+                font-size: 38px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <canvas id="stars-canvas"></canvas>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <a href="#" class="nav-logo">
-      <img src="logo.png" alt="Logo" class="logo-img">
-      <span class="sc">SC</span><span class="ultra">ULTRA</span><span class="guide">GUIDE</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html#sites">Sites Validés</a></li>
-      <li><a href="tutos.html">Tutoriels</a></li>
-    </ul>
-    <div class="nav-hamburger" id="nav-hamburger">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
+    <header>
+        <div class="hero">
+            <h1>
+                exemple de<br>
+                <span>PROJETS</span>
+            </h1>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-badge"><span class="pulse-dot"></span> ONLINE — VERIFIED LINKS</div>
-      <h1><span class="gradient-text">SC Ultra Guide</span><br>Le Hub Ultime</h1>
-      <p>Tous les sites et outils Star Citizen validés et vérifiés, centralisés en un seul endroit. Zéro spam, que du
-        contenu de qualité.</p>
-      <div class="hero-buttons">
-        <a href="#sites" class="btn btn-primary">Voir les Sites</a>
-        <a href="https://robertsspaceindustries.com/" target="_blank" class="btn btn-outline">Site Officiel RSI</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="number" id="stat-sites" data-target="0">0</div>
-          <div class="label">Sites Validés</div>
+            <p>
+                Tous les projets que j’ai pu créer autour de Star Citizen,
+                la Fondation SCP, des dashboards, outils web et concepts communautaires.(ce site ne comprend pas les web apps)
+            </p>
+
+            <div class="buttons">
+                <a href="#projects" class="primary">Voir les projets</a>
+                <a href="#skills" class="secondary">Compétences</a>
+            </div>
         </div>
-        <div class="hero-stat">
-          <div class="number" id="stat-cats" data-target="0">0</div>
-          <div class="label">Catégories</div>
+    </header>
+
+    <section id="projects">
+        <div class="section-title">
+            <p>Portfolio</p>
+            <h2>Mes Projets</h2>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- SITES VALIDÉS -->
-  <section class="section" id="sites">
-    <div class="container">
-      <div class="section-header animate-on-scroll">
-        <span class="tag">DATABASE</span>
-        <h2>Sites & Outils Validés</h2>
-        <p>Ressources vérifiées par la communauté. Cliquez pour accéder.</p>
-      </div>
-      <div class="search-container animate-on-scroll">
-        <span class="search-icon">⌕</span>
-        <input type="text" id="search-input" class="search-input" placeholder="Rechercher un site ou outil...">
-      </div>
-      <div class="filter-bar animate-on-scroll" id="filter-bar">
-        <!-- Filtres générés dynamiquement -->
-      </div>
-      <div class="cards-grid" id="sites-grid">
-        <!-- Cartes générées dynamiquement depuis sites.js -->
-      </div>
-      <div class="no-results" id="no-results" style="display:none;">
-        <p>Aucun résultat trouvé.</p>
-      </div>
-    </div>
-  </section>
+        <div class="projects-grid">
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-logo">
-        <img src="logo.png" alt="Logo" class="logo-img-footer">
-        <span style="color:var(--accent)">SC</span> ULTRA <span style="color:var(--text-mid)">GUIDE</span>
-      </div>
-      <div class="footer-links">
-        <a href="#sites">Sites Validés</a>
-        <a href="https://robertsspaceindustries.com/" target="_blank">RSI Official</a>
-      </div>
-      <p>SC Ultra Guide — Fait par la communauté, pour la communauté. Star Citizen © Cloud Imperium Games.</p>
-    </div>
-  </footer>
+            <div class="project-card">
+                <div class="project-image">01</div>
 
-  <script src="sites.js"></script>
-  <script src="script.js"></script>
+                <div class="project-content">
+                    <div class="category">WEB STAR CITIZEN</div>
+
+                    <h3>SC ULTRA GUIDE</h3>
+
+                    <p>
+                        Un site web permettant de regrouper les outils, guides
+                        et contenus utiles de la communauté Star Citizen.
+                    </p>
+
+                    <div class="techs">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <a href="SC ULTRA GUIDE/index.html" class="project-btn">Voir le projet</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">02</div>
+
+                <div class="project-content">
+                    <div class="category">WEB</div>
+
+                    <h3>SCiPNET 80</h3>
+
+                    <p>
+                        Site créé pour le Site-80 de la Fondation SCP sur Roblox.
+                        Projet abandonné suite à des conflits internes dans l’équipe.
+                    </p>
+
+                    <div class="techs">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <a href="SCiP-NET-80/main.html" class="project-btn">Voir le projet</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">03</div>
+
+                <div class="project-content">
+                    <div class="category">WEB</div>
+
+                    <h3>SCP Foundation - Site 01 Wiki</h3>
+
+                    <p>
+                        Un grand wiki regroupant des SCP et des informations
+                        sur l’univers de la Fondation SCP.
+                    </p>
+
+                    <div class="techs">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <a href="scp facility/index.html" class="project-btn">Voir le projet</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">04</div>
+
+                <div class="project-content">
+                    <div class="category">DASHBOARD</div>
+
+                    <h3>Dashboard - Pathonos</h3>
+
+                    <p>
+                        Dashboard développé pour un projet scientifique autour du SCP-1025.
+                    </p>
+
+                    <div class="techs">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <a href="Dashboard-Pathonos/index.html" class="project-btn">Voir le projet</a>
+                </div>
+            </div>
+ <div class="project-card">
+                <div class="project-image">05</div>
+
+                <div class="project-content">
+                    <div class="category">wiki</div>
+
+                    <h3>HY-MANIA</h3>
+
+                    <p>
+                        un consepte de wiki pour hytales, abandonné a tout debut du projet.
+                    </p>
+
+                    <div class="techs">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <a href="hy-mania/index.html" class="project-btn">Voir le projet</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-title">
+            <p>Compétences</p>
+            <h2>Technologies</h2>
+        </div>
+
+        <div class="skills">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">UI / UX</div>
+            <div class="skill">React</div>
+            <div class="skill">Node.js</div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 - Mon Portfolio
+    </footer>
+
 </body>
 
 </html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SC Ultra Guide — Le Hub Ultime Star Citizen</title>
+  <meta name="description"
+    content="SC Ultra Guide centralise tous les sites, outils et ressources validés pour Star Citizen. Votre point d'entrée unique vers le verse.">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="#" class="nav-logo">
+      <img src="logo.png" alt="Logo" class="logo-img">
+      <span class="sc">SC</span><span class="ultra">ULTRA</span><span class="guide">GUIDE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#sites">Sites Validés</a></li>
+      <li><a href="tutos.html">Tutoriels</a></li>
+    </ul>
+    <div class="nav-hamburger" id="nav-hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="pulse-dot"></span> ONLINE — VERIFIED LINKS</div>
+      <h1><span class="gradient-text">SC Ultra Guide</span><br>Le Hub Ultime</h1>
+      <p>Tous les sites et outils Star Citizen validés et vérifiés, centralisés en un seul endroit. Zéro spam, que du
+        contenu de qualité.</p>
+      <div class="hero-buttons">
+        <a href="#sites" class="btn btn-primary">Voir les Sites</a>
+        <a href="https://robertsspaceindustries.com/" target="_blank" class="btn btn-outline">Site Officiel RSI</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="number" id="stat-sites" data-target="0">0</div>
+          <div class="label">Sites Validés</div>
+        </div>
+        <div class="hero-stat">
+          <div class="number" id="stat-cats" data-target="0">0</div>
+          <div class="label">Catégories</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SITES VALIDÉS -->
+  <section class="section" id="sites">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="tag">DATABASE</span>
+        <h2>Sites & Outils Validés</h2>
+        <p>Ressources vérifiées par la communauté. Cliquez pour accéder.</p>
+      </div>
+      <div class="search-container animate-on-scroll">
+        <span class="search-icon">⌕</span>
+        <input type="text" id="search-input" class="search-input" placeholder="Rechercher un site ou outil...">
+      </div>
+      <div class="filter-bar animate-on-scroll" id="filter-bar">
+        <!-- Filtres générés dynamiquement -->
+      </div>
+      <div class="cards-grid" id="sites-grid">
+        <!-- Cartes générées dynamiquement depuis sites.js -->
+      </div>
+      <div class="no-results" id="no-results" style="display:none;">
+        <p>Aucun résultat trouvé.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="logo.png" alt="Logo" class="logo-img-footer">
+        <span style="color:var(--accent)">SC</span> ULTRA <span style="color:var(--text-mid)">GUIDE</span>
+      </div>
+      <div class="footer-links">
+        <a href="#sites">Sites Validés</a>
+        <a href="https://robertsspaceindustries.com/" target="_blank">RSI Official</a>
+      </div>
+      <p>SC Ultra Guide — Fait par la communauté, pour la communauté. Star Citizen © Cloud Imperium Games.</p>
+    </div>
+  </footer>
+
+  <script src="sites.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
