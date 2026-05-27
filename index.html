@@ -2,399 +2,869 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mon Portfolio</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCiP-NET : SITE-01 // COMMAND TERMINAL</title>
     <style>
+        :root {
+            --bg-color: #050505;
+            --text-color: #e0e0e0;
+            --primary: #c41e3a;
+            /* Deep Red */
+            --primary-glow: rgba(196, 30, 58, 0.4);
+            --secondary: #1a1a1a;
+            --accent: #2e2e2e;
+            --font-main: 'Courier New', Courier, monospace;
+            --font-header: 'Arial Black', sans-serif;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
         body {
-            background: #050505;
-            color: white;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            line-height: 1.6;
             overflow-x: hidden;
+            background-image:
+                linear-gradient(rgba(196, 30, 58, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(196, 30, 58, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* CRT Scanline Effect */
+        body::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
         }
 
         header {
-            min-height: 100vh;
+            background-color: var(--secondary);
+            border-bottom: 3px solid var(--primary);
+            padding: 20px 40px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            justify-content: space-between;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(0 0 5px var(--primary));
+        }
+
+        h1 {
+            font-family: var(--font-header);
+            font-size: 1.8rem;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: bold;
+            letter-spacing: 5px;
+        }
+
+        main {
+            margin-top: 120px;
             padding: 40px;
-            background:
-                radial-gradient(circle at top left, rgba(140, 0, 255, 0.25), transparent 30%),
-                radial-gradient(circle at bottom right, rgba(0, 200, 255, 0.2), transparent 30%),
-                #050505;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .hero {
-            max-width: 1000px;
+        .terminal-header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 20px;
         }
 
-        .hero h1 {
-            font-size: 90px;
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 25px;
+        .terminal-header h2 {
+            font-family: var(--font-header);
+            color: var(--primary);
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px var(--primary-glow);
         }
 
-        .hero span {
-            background: linear-gradient(90deg, #00d4ff, #9b5cff, #ff4fd8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .terminal-header p {
+            color: #888;
+            font-size: 1.1rem;
+            margin-top: 10px;
         }
 
-        .hero p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 20px;
-            line-height: 1.7;
-            margin-bottom: 40px;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 5;
         }
 
-        .buttons {
+        .menu-card {
+            background-color: var(--secondary);
+            border: 1px solid var(--accent);
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-color);
+            min-height: 200px;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 0 15px var(--primary-glow);
+            border-color: #444;
+        }
+
+        .menu-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--accent);
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            text-align: center;
+            width: 50px;
             display: flex;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            align-items: center;
         }
 
-        .buttons a {
-            padding: 15px 30px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .primary {
-            background: white;
-            color: black;
-        }
-
-        .secondary {
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        .card-title {
+            font-family: var(--font-header);
+            font-size: 1.4rem;
             color: white;
-        }
-
-        .buttons a:hover {
-            transform: translateY(-4px);
-        }
-
-        section {
-            padding: 100px 10%;
-        }
-
-        .section-title {
-            margin-bottom: 60px;
-        }
-
-        .section-title p {
-            color: #9b5cff;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
         }
 
-        .section-title h2 {
-            font-size: 50px;
-            font-weight: 900;
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            font-size: 0.95rem;
+            color: #aaa;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        .card-footer {
+            padding: 15px 20px;
+            background-color: rgba(196, 30, 58, 0.1);
+            border-top: 1px solid var(--accent);
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .menu-card:hover .card-footer {
+            background-color: var(--primary);
+            color: #fff;
+        }
+
+        .stat-block {
+            display: flex;
             gap: 30px;
         }
 
-        .project-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            overflow: hidden;
-            transition: 0.3s;
+        .stat-item {
+            text-align: right;
+        }
+
+        .featured-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        .menu-card.featured {
+            max-width: 600px;
+            width: 100%;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+            background: linear-gradient(135deg, var(--secondary) 0%, #2a0a0e 100%);
+        }
+
+        .menu-card.featured .card-header {
+            background-color: rgba(196, 30, 58, 0.2);
+        }
+
+        .menu-card.featured .card-title {
+            color: #ff4d6a;
+            font-size: 1.6rem;
+        }
+
+        /* Status panel at the bottom */
+        .status-panel {
+            margin-top: auto;
+            border-top: 1px dashed var(--accent);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            color: #555;
+            font-size: 0.8rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            position: relative;
+            z-index: 5;
+            padding-bottom: 20px;
+        }
+
+        .status-panel span {
+            color: var(--primary);
+        }
+
+        /* Legal footer banner */
+        .legal-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            border-top: 1px solid var(--primary);
+            background: rgba(15, 15, 15, 0.9);
             backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            text-decoration: none;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            z-index: 20;
+            color: #888;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: var(--font-header);
         }
 
-        .project-card:hover {
-            transform: translateY(-8px);
-            border-color: #9b5cff;
+        .legal-footer:hover {
+            background: rgba(196, 30, 58, 0.2);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(196, 30, 58, 0.3);
         }
 
-        .project-image {
-            height: 220px;
+        .legal-footer b {
+            color: var(--primary);
+        }
+
+        /* Adjust main to not be hidden by fixed footer */
+        main {
+            padding-bottom: 80px;
+        }
+
+        /* Access Granted Animation */
+        #access-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease-out;
+            pointer-events: none;
+        }
+
+        #access-overlay h1 {
+            color: var(--primary);
+            font-size: 3rem;
+            text-shadow: 0 0 20px var(--primary);
+            margin-bottom: 20px;
+        }
+
+        #access-overlay .access-log {
+            color: #0f0;
+            font-family: var(--font-main);
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .search-terminal {
+            background-color: #000;
+            border: 1px solid var(--accent);
+            padding: 15px 25px;
+            margin-bottom: 40px;
+            font-family: var(--font-main);
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(155, 92, 255, 0.35), rgba(0, 212, 255, 0.2));
-            font-size: 70px;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.1);
+            gap: 15px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+            position: relative;
+            z-index: 5;
         }
 
-        .project-content {
-            padding: 30px;
-        }
-
-        .project-content h3 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        .category {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: rgba(155, 92, 255, 0.15);
-            border: 1px solid rgba(155, 92, 255, 0.2);
-            color: #caa7ff;
-            font-size: 12px;
+        .terminal-prompt {
+            color: var(--primary);
             font-weight: bold;
+            white-space: nowrap;
+            letter-spacing: 1px;
+        }
+
+        #globalSearch {
+            background: none;
+            border: none;
+            color: #0f0;
+            /* Neo-green terminal text */
+            font-family: var(--font-main);
+            font-size: 1.1rem;
+            width: 100%;
+            outline: none;
             text-transform: uppercase;
         }
 
-        .project-content p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.7;
-            margin-bottom: 25px;
+        #globalSearch::placeholder {
+            color: #054a05;
         }
 
-        .techs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .techs span {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 8px 14px;
-            border-radius: 12px;
-            font-size: 14px;
-        }
-
-        .project-btn {
-            display: block;
+        .terminal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            text-align: center;
-            padding: 14px;
-            border-radius: 14px;
-            text-decoration: none;
-            background: white;
-            color: black;
-            font-weight: bold;
-            transition: 0.3s;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-main);
         }
 
-        .project-btn:hover {
-            transform: scale(1.03);
+        .search-status {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--primary-glow);
         }
 
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
+        .search-progress {
+            width: 300px;
+            height: 2px;
+            background: #222;
+            position: relative;
+            overflow: hidden;
         }
 
-        .skill {
-            padding: 30px;
-            text-align: center;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            font-size: 22px;
-            font-weight: bold;
+        .search-progress::after {
+            content: '';
+            position: absolute;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            animation: search-load 1.5s infinite;
         }
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: rgba(255, 255, 255, 0.5);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        @keyframes search-load {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
-        @media(max-width: 768px) {
-            .hero h1 {
-                font-size: 55px;
+        @keyframes scanline {
+            0% {
+                transform: translateY(-100vh);
             }
 
-            .section-title h2 {
-                font-size: 38px;
+            100% {
+                transform: translateY(100vh);
             }
+        }
+
+        .scanline-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(196, 30, 58, 0.3);
+            box-shadow: 0 0 20px rgba(196, 30, 58, 0.5);
+            position: fixed;
+            z-index: 3;
+            animation: scanline 6s linear infinite;
+            pointer-events: none;
+            opacity: 0.5;
         }
     </style>
 </head>
 
 <body>
+    <!-- Access Animation -->
+    <div id="access-overlay">
+        <img src="./Foundation Facilities - SCP Foundation_files/Site-01.svg" alt="Site-01 Logo"
+            style="width: 120px; height: 120px; margin-bottom: 20px; filter: drop-shadow(0 0 10px var(--primary));"
+            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI1Ii8+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMyIvPjwvc3ZnPg=='">
+        <h1>COMMANDE SITE-01</h1>
+        <div class="access-log" id="accessText">
+            AUTHENTIFICATION DES IDENTIFIANTS...<br>
+        </div>
+    </div>
+
+    <div class="scanline-bar"></div>
 
     <header>
-        <div class="hero">
-            <h1>
-                exemple de<br>
-                <span>PROJETS</span>
-            </h1>
-
-            <p>
-                Tous les projets que j’ai pu créer autour de Star Citizen,
-                la Fondation SCP, des dashboards, outils web et concepts communautaires.(ce site ne comprend pas les web apps)
-            </p>
-
-            <div class="buttons">
-                <a href="#projects" class="primary">Voir les projets</a>
-                <a href="#skills" class="secondary">Compétences</a>
+        <div class="logo-container">
+            <img src="./Foundation Facilities - SCP Foundation_files/Site-01.svg" alt="SCP Logo" class="logo"
+                onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI1Ii8+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMyIvPjwvc3ZnPg=='">
+            <div>
+                <h1>Base de données SCiP-NET</h1>
+                <div class="subtitle">SITE-01 // HUB INTRANET</div>
+            </div>
+        </div>
+        <div class="stat-block">
+            <div class="stat-item">
+                <div style="font-size: 0.7rem; color: #888;">DIRECTEUR DE SITE</div>
+                <div style="color: var(--primary); font-weight: bold;">[CLASSIFIÉ]</div>
+            </div>
+            <div class="stat-item">
+                <div style="font-size: 0.7rem; color: #888;">ACCRÉDITATION REQUISE</div>
+                <div style="color: #f00; font-weight: bold;">NIVEAU 4</div>
             </div>
         </div>
     </header>
 
-    <section id="projects">
-        <div class="section-title">
-            <p>Portfolio</p>
-            <h2>Mes Projets</h2>
+    <main>
+        <div class="terminal-header">
+            <h2>TERMINAL PRINCIPAL DU SITE-01</h2>
+            <p>Sélectionnez un module de sous-système ou utilisez la ligne de commande ci-dessous.</p>
         </div>
 
-        <div class="projects-grid">
-
-            <div class="project-card">
-                <div class="project-image">01</div>
-
-                <div class="project-content">
-                    <div class="category">WEB STAR CITIZEN</div>
-
-                    <h3>SC ULTRA GUIDE</h3>
-
-                    <p>
-                        Un site web permettant de regrouper les outils, guides
-                        et contenus utiles de la communauté Star Citizen.
-                    </p>
-
-                    <div class="techs">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-
-                    <a href="SC ULTRA GUIDE/index.html" class="project-btn">Voir le projet</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">02</div>
-
-                <div class="project-content">
-                    <div class="category">WEB</div>
-
-                    <h3>SCiPNET 80</h3>
-
-                    <p>
-                        Site créé pour le Site-80 de la Fondation SCP sur Roblox.
-                        Projet abandonné suite à des conflits internes dans l’équipe.
-                    </p>
-
-                    <div class="techs">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-
-                    <a href="SCiP-NET-80/main.html" class="project-btn">Voir le projet</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">03</div>
-
-                <div class="project-content">
-                    <div class="category">WEB</div>
-
-                    <h3>SCP Foundation - Site 01 Wiki</h3>
-
-                    <p>
-                        Un grand wiki regroupant des SCP et des informations
-                        sur l’univers de la Fondation SCP.
-                    </p>
-
-                    <div class="techs">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-
-                    <a href="scp facility/index.html" class="project-btn">Voir le projet</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">04</div>
-
-                <div class="project-content">
-                    <div class="category">DASHBOARD</div>
-
-                    <h3>Dashboard - Pathonos</h3>
-
-                    <p>
-                        Dashboard développé pour un projet scientifique autour du SCP-1025.
-                    </p>
-
-                    <div class="techs">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-
-                    <a href="Dashboard-Pathonos/index.html" class="project-btn">Voir le projet</a>
-                </div>
-            </div>
- <div class="project-card">
-                <div class="project-image">05</div>
-
-                <div class="project-content">
-                    <div class="category">wiki</div>
-
-                    <h3>HY-MANIA</h3>
-
-                    <p>
-                        un consepte de wiki pour hytales, abandonné a tout debut du projet.
-                    </p>
-
-                    <div class="techs">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-
-                    <a href="hy-mania/index.html" class="project-btn">Voir le projet</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills">
-        <div class="section-title">
-            <p>Compétences</p>
-            <h2>Technologies</h2>
+        <!-- Global Search Terminal -->
+        <div class="search-terminal">
+            <div class="terminal-prompt">SITE-01@SCiP-NET:~$</div>
+            <input type="text" id="globalSearch" placeholder="ENTREZ UN ID SCP, UN DÉPARTEMENT OU UNE COMMANDE (recherche sur la base de données officielle)..." autocomplete="off">
         </div>
 
-        <div class="skills">
-            <div class="skill">HTML</div>
-            <div class="skill">CSS</div>
-            <div class="skill">JavaScript</div>
-            <div class="skill">UI / UX</div>
-            <div class="skill">React</div>
-            <div class="skill">Node.js</div>
+        <div id="searchOverlay" class="terminal-overlay">
+            <div class="search-status" id="searchStatus">RECHERCHE DANS LA BASE DE DONNÉES...</div>
+            <div class="search-progress"></div>
         </div>
-    </section>
 
-    <footer>
-        © 2026 - Mon Portfolio
-    </footer>
+        <div class="featured-container">
+            <!-- Foundation Orientation -->
+            <a href="about.html" class="menu-card featured">
+                <div class="card-header">
+                    <div class="card-icon">🏛️</div>
+                    <div class="card-title">Orientation Fondation</div>
+                </div>
+                <div class="card-body" style="text-align: center;">
+                    <p style="font-weight: bold; color: var(--primary); margin-bottom: 10px;">[ ACCÈS PRIORITAIRE POUR
+                        LES NOUVEAUX ARRIVANTS ]</p>
+                    Aperçu officiel de la mission de la Fondation SCP, de la classification du personnel et du mandat
+                    mondial. Obligatoire pour tout nouveau personnel.
+                </div>
+                <div class="card-footer" style="text-align: center;">
+                    INITIALISER LE PROTOCOLE D'ORIENTATION &gt;&gt;
+                </div>
+            </a>
 
+            <!-- General Presentation -->
+            <a href="presentation.html" class="menu-card featured"
+                style="border-color: #ddd; box-shadow: 0 0 20px rgba(255,255,255,0.05); background: linear-gradient(135deg, var(--secondary) 0%, #1a1a1a 100%);">
+                <div class="card-header" style="background-color: rgba(255, 255, 255, 0.05);">
+                    <div class="card-icon">👁️</div>
+                    <div class="card-title" style="color: #fff;">Qu'est-ce que la Fondation ?</div>
+                </div>
+                <div class="card-body" style="text-align: center;">
+                    <p style="font-weight: bold; color: #aaa; margin-bottom: 10px;">[ PRÉSENTATION GLOBALE ]</p>
+                    Découvrez l'essence de notre mission, nos trois piliers fondamentaux et notre serment de
+                    protection envers l'humanité. Comprendre notre raison d'être.
+                </div>
+                <div class="card-footer"
+                    style="text-align: center; color: #fff; background-color: rgba(255, 255, 255, 0.05);">
+                    ACCÉDER AU MANIFESTE &gt;&gt;
+                </div>
+            </a>
+        </div>
+
+        <div class="grid">
+            <!-- Global Facilities Registry -->
+            <a href="Foundation Facilities - SCP Foundation.html" class="menu-card">
+                <div class="card-header">
+                    <div class="card-icon">🌍</div>
+                    <div class="card-title">Registre des Sites</div>
+                </div>
+                <div class="card-body">
+                    Accédez à la base de données mondiale de tous les sites, zones, avant-postes et installations
+                    d'observation actifs de la Fondation SCP. Inclut une carte tactique interactive.
+                </div>
+                <div class="card-footer">
+                    INITIALISER LA LIAISON &gt;&gt;
+                </div>
+            </a>
+
+            <!-- SCP Archives -->
+            <a href="archives.html" class="menu-card">
+                <div class="card-header">
+                    <div class="card-icon">🗄️</div>
+                    <div class="card-title">Archives SCP</div>
+                </div>
+                <div class="card-body">
+                    Accédez aux documents des Procédures de Confinement Spéciales. Consultez les entités, objets et
+                    phénomènes anormaux actuellement répertoriés par la Fondation.
+                </div>
+                <div class="card-footer">
+                    INITIALISER LA LIAISON &gt;&gt;
+                </div>
+            </a>
+
+            <!-- Security Department (SDS) -->
+            <a href="secu.html" class="menu-card">
+                <div class="card-header">
+                    <div class="card-icon">🛡️</div>
+                    <div class="card-title">Sécurité (SDS)</div>
+                </div>
+                <div class="card-body">
+                    Systèmes du Département de Sécurité. Accédez aux protocoles tactiques, aux procédures de brèche de
+                    confinement et aux réseaux de défense des bases.
+                </div>
+                <div class="card-footer">
+                    INITIALISER LA LIAISON &gt;&gt;
+                </div>
+            </a>
+
+            <!-- Codes & Protocols -->
+            <a href="codes.html" class="menu-card">
+                <div class="card-header">
+                    <div class="card-icon">⚠️</div>
+                    <div class="card-title">Codes de Réponse</div>
+                </div>
+                <div class="card-body">
+                    Codes d'alerte actifs, matrices de menace, désignations d'urgence et protocoles de réponse pour les
+                    événements anormaux et les scénarios de Classe K.
+                </div>
+                <div class="card-footer">
+                    INITIALISER LA LIAISON &gt;&gt;
+                </div>
+            </a>
+
+            <!-- Scientific Department (D-SCI) -->
+            <a href="d-sci.html" class="menu-card">
+                <div class="card-header">
+                    <div class="card-icon">🔬</div>
+                    <div class="card-title">Dépt. Scientifique</div>
+                </div>
+                <div class="card-body">
+                    Base de données centrale D-SCI. Recherche sur les matériaux anormaux, journaux de tests
+                    expérimentaux en cours et formulaires de réquisition de laboratoire.
+                </div>
+                <div class="card-footer">
+                    INITIALISER LA LIAISON &gt;&gt;
+                </div>
+            </a>
+
+            <!-- ACS Guide -->
+            <a href="acs.html" class="menu-card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">Guide ACS</div>
+                </div>
+                <div class="card-body">
+                    Documentation du système de classification des anomalies. Guide complet sur les classes ésotériques,
+                    les classes de perturbation et les classes de risque.
+                </div>
+                <div class="card-footer">
+                    INITIALISER LA LIAISON &gt;&gt;
+                </div>
+            </a>
+
+            <!-- Groups of Interest (GOI) -->
+            <a href="goi.html" class="menu-card">
+                <div class="card-header">
+                    <div class="card-icon">👥</div>
+                    <div class="card-title">Groupes d'Intérêt</div>
+                </div>
+                <div class="card-body">
+                    Base de données sur les organisations para-utilitaires et les groupes d'intérêt surveillés.
+                    Inclut les profils de menace, les affiliations et les historiques opérationnels.
+                </div>
+                <div class="card-footer">
+                    INITIALISER LA LIAISON &gt;&gt;
+                </div>
+            </a>
+
+            <!-- Mobile Task Forces (FIM) -->
+            <a href="mtf.html" class="menu-card">
+                <div class="card-header">
+                    <div class="card-icon">🎖️</div>
+                    <div class="card-title">FIM</div>
+                </div>
+                <div class="card-body">
+                    Forces d'Intervention Mobiles. Accédez aux dossiers des unités d'élite de la Fondation.
+                    Profils tactiques, spécialisations et journaux de déploiement.
+                </div>
+                <div class="card-footer">
+                    INITIALISER LA LIAISON &gt;&gt;
+                </div>
+            </a>
+
+            <!-- O5 Council -->
+            <a href="o5.html" class="menu-card"
+                style="border-color: #ff0000; box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);">
+                <div class="card-header">
+                    <div class="card-icon" style="color: #ff0000;">⛔</div>
+                    <div class="card-title" style="color: #ff0000;">Conseil O5</div>
+                </div>
+                <div class="card-body">
+                    ACCÈS RESTREINT - NIVEAU 5 UNIQUEMENT.
+                    Dossiers classifiés sur les treize membres du Conseil O5.
+                    Information hautement sensible.
+                </div>
+                <div class="card-footer" style="background: rgba(255, 0, 0, 0.1); color: #ff0000;">
+                    OUTREPASSER LA SÉCURITÉ &gt;&gt;
+                </div>
+            </a>
+
+            <!-- Ethics Committee (CE) -->
+            <a href="ethics.html" class="menu-card">
+                <div class="card-header">
+                    <div class="card-icon">⚖️</div>
+                    <div class="card-title">Comité d'Éthique</div>
+                </div>
+                <div class="card-body">
+                    La conscience de la Fondation. Organe de surveillance indépendant garantissant que le "mal nécessaire" reste justifié. Surveille les protocoles et le personnel.
+                </div>
+                <div class="card-footer">
+                    INITIALISER LA LIAISON &gt;&gt;
+                </div>
+            </a>
+
+            <!-- Foundation Departments -->
+            <a href="departments.html" class="menu-card">
+                <div class="card-header">
+                    <div class="card-icon">🏢</div>
+                    <div class="card-title">Départements</div>
+                </div>
+                <div class="card-body">
+                    Consultez l'organigramme complet de la Fondation. Liste détaillée des départements administratifs,
+                    scientifiques, logistiques et spécialisés dans l'anormal.
+                </div>
+                <div class="card-footer">
+                    INITIALISER LA LIAISON &gt;&gt;
+                </div>
+            </a>
+
+            <!-- French Equipment -->
+            <a href="equipment.html" class="menu-card">
+                <div class="card-header">
+                    <div class="card-icon">🛡️</div>
+                    <div class="card-title" >Arsenal Branche FR</div>
+                </div>
+                <div class="card-body">
+                    Inventaire tactique des matériels terrestres, aériens et armements légers spécifiquement déployés
+                    par la Branche Francophone.
+                </div>
+                <div class="card-footer" >
+                    INITIALISER LA LIAISON &gt;&gt;
+                </div>
+            </a>
+
+            <!-- Amnesics Guide -->
+            <a href="amnesics.html" class="menu-card">
+                <div class="card-header">
+                    <div class="card-icon">💊</div>
+                    <div class="card-title">Guide des Amnésiques</div>
+                </div>
+                <div class="card-body">
+                    Consultez les protocoles d'administration des agents de suppression de mémoire. Classes A à Omega, méthodes d'application et gestion des effets secondaires.
+                </div>
+                <div class="card-footer">
+                    INITIALISER LA LIAISON &gt;&gt;
+                </div>
+            </a>
+        </div>
+
+        <div class="status-panel">
+            <div>SERVEUR : <span>SITE-01-MAIN</span></div>
+            <div>STATUT : <span style="color: #0f0;">EN LIGNE ET OPÉRATIONNEL</span></div>
+            <div>DISPONIBILITÉ : <span>99.99%</span></div>
+        </div>
+    </main>
+
+    <!-- Mentions Légales Banner -->
+    <a href="legal.html" class="legal-footer">
+        <span>⚖️ <b>Mentions Légales</b> // Licence Creative Commons Attribution-ShareAlike 3.0</span>
+    </a>
+
+    <script>
+        // Global Search Logic
+        const searchInput = document.getElementById('globalSearch');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchStatus = document.getElementById('searchStatus');
+
+        const routes = {
+            'ARCHIVES': 'archives.html',
+            'DEPARTEMENTS': 'departments.html',
+            'DEPT': 'departments.html',
+            'AMNESIQUES': 'amnesics.html',
+            'AMNESICS': 'amnesics.html',
+            'ETIQUE': 'ethics.html',
+            'ETHICS': 'ethics.html',
+            'CE': 'ethics.html',
+            'MTF': 'mtf.html',
+            'FIM': 'mtf.html',
+            'EQUIPEMENT': 'equipment.html',
+            'ARSENAL': 'equipment.html',
+            'PRESENTATION': 'presentation.html',
+            'ABOUT': 'about.html',
+            'ORIENTATION': 'about.html',
+            'SITES': 'Foundation Facilities - SCP Foundation.html',
+            'FACILITIES': 'Foundation Facilities - SCP Foundation.html',
+            'SECU': 'secu.html',
+            'SECURITY': 'secu.html',
+            'CODES': 'codes.html',
+            'D-SCI': 'd-sci.html',
+            'SCIENCE': 'd-sci.html',
+            'ACS': 'acs.html',
+            'GOI': 'goi.html',
+            'O5': 'o5.html',
+            'LEGAL': 'legal.html'
+        };
+
+        searchInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const query = this.value.trim().toUpperCase();
+                if (!query) return;
+
+                processSearch(query);
+            }
+        });
+
+        function processSearch(query) {
+            const scpMatch = query.match(/^(?:SCP\s*[-]?\s*)?(\d{1,4})$/);
+            
+            searchOverlay.style.display = 'flex';
+            searchStatus.innerText = `RECHERCHE : ${query}...`;
+
+            setTimeout(() => {
+                if (scpMatch) {
+                    const scpId = scpMatch[1].padStart(3, '0');
+                    searchStatus.innerText = `ID SCP DÉTECTÉ : SCP-${scpId}... REDIRECTION.`;
+                    setTimeout(() => {
+                        window.location.href = `https://scp-wiki.wikidot.com/scp-${scpId}`;
+                    }, 800);
+                } else if (routes[query]) {
+                    searchStatus.innerText = `MODULE SYSTÈME DÉTECTÉ : ${query}... CHARGEMENT.`;
+                    setTimeout(() => {
+                        window.location.href = routes[query];
+                    }, 800);
+                } else if (query === 'HELP' || query === '?') {
+                    alert('Commandes disponibles :\n- Un numéro (ex: 173) pour un SCP\n- Nom d\'un module (ex: ARCHIVES, MTF, AMNESIQUES)\n- HELP pour cette aide');
+                    searchOverlay.style.display = 'none';
+                } else {
+                    searchStatus.innerText = `ERREUR : CIBLE "${query}" INCONNUE DANS LA BASE DE DONNÉES.`;
+                    setTimeout(() => {
+                        searchOverlay.style.display = 'none';
+                        searchInput.value = '';
+                    }, 1500);
+                }
+            }, 1000);
+        }
+
+        // Intro sequence logic
+        const overlay = document.getElementById('access-overlay');
+        const textElement = document.getElementById('accessText');
+
+        const lines = [
+            "ÉTABLISSEMENT D'UNE CONNEXION SÉCURISÉE AU SCiP-NET...",
+            "VÉRIFICATION DES BIOMÉTRIES...",
+            "BIOMÉTRIES : CONFIRMÉES.",
+            "DÉCRYPTAGE DU MANIFESTE DU SITE-01...",
+            "ACCÈS AUTORISÉ."
+        ];
+
+        let i = 0;
+        function showLine() {
+            if (i < lines.length) {
+                textElement.innerHTML += lines[i] + "<br>";
+                i++;
+                setTimeout(showLine, 400 + Math.random() * 400); // Random delay for terminal effect
+            } else {
+                setTimeout(() => {
+                    overlay.style.opacity = '0';
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                    }, 1000);
+                }, 500);
+            }
+        }
+
+        // Start animation
+        setTimeout(showLine, 500);
+    </script>
 </body>
 
 </html>
